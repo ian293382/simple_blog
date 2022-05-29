@@ -22,7 +22,7 @@ module Authors
 
     # POST /posts or /posts.json
     def create
-      @post = Post.new(post_params)
+      @post = current_author.posts.build(post_params)
 
       respond_to do |format|
         if @post.save
