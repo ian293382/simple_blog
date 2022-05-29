@@ -1,67 +1,48 @@
 module Authors
   class ElementsController < AuthorsController
-    before_action :set_element, only: %i[ show edit update destroy ]
+    before_action :set_post
+    before_action :set_element, only: %i[update destroy ]
 
-    # GET /elements or /elements.json
-    def index
-      @elements = Element.all
-    end
-
-    # GET /elements/1 or /elements/1.json
-    def show
-    end
-
-    # GET /elements/new
-    def new
-      @element = Element.new
-    end
-
-    # GET /elements/1/edit
-    def edit
-    end
 
     # POST /elements or /elements.json
     def create
-      @element = Element.new(element_params)
+     @element = @post.elements.build(element_params)
 
-      respond_to do |format|
-        if @element.save
-          format.html { redirect_to element_url(@element), notice: "Element was successfully created." }
-          format.json { render :show, status: :created, location: @element }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @element.errors, status: :unprocessable_entity }
-        end
-      end
-    end
+       if @element.save
+           notice = nil
+       else
+           notice =  @element.errors.full_messages.join(". ") << "."
+       end
+         redirect_to edit_post_path(@post), notice: notice
+     end
+
+
 
     # PATCH/PUT /elements/1 or /elements/1.json
     def update
-      respond_to do |format|
-        if @element.update(element_params)
-          format.html { redirect_to element_url(@element), notice: "Element was successfully updated." }
-          format.json { render :show, status: :ok, location: @element }
-        else
-          format.html { render :edit, status: :unprocessable_entity }
-          format.json { render json: @element.errors, status: :unprocessable_entity }
-        end
-      end
-    end
+       if @element.update(element_params)
+           redirect_to edit_post_path(@post), notice: 'Element was successfully updated.'
+       else
+         render :edit
+       end
+     end
 
-    # DELETE /elements/1 or /elements/1.json
-    def destroy
-      @element.destroy
 
-      respond_to do |format|
-        format.html { redirect_to elements_url, notice: "Element was successfully destroyed." }
-        format.json { head :no_content }
-      end
-    end
+     # DELETE /elements/1 or /elements/1.json
+     def destroy
+       @element.destroy
+       redirect_to elements_url, notice: "Element was successfully destroyed."
+     end
 
     private
       # Use callbacks to share common setup or constraints between actions.
+
+      def set_post
+        @post = current_author.posts.find(params[:post_id])
+      end
+
       def set_element
-        @element = Element.find(params[:id])
+        @element = @post.elements.find(params[:id])
       end
 
       # Only allow a list of trusted parameters through.
