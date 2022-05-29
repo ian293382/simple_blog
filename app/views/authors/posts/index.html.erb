@@ -4,11 +4,11 @@
 </h4>
 
 <% @posts.each do |post| %>
-<%= link_to  post do %>
-  <div class="card md-3">
+<%= link_to  post, class: 'text-decoreate-none' do %>
+  <div class="card mb-3">
     <div class="card-body">
-      <h5 class='card-title'><%= post.title %></h5>
-    <p><%= post.description %></p>
+      <h5 class='card-title mb-1 text-dark'><%= post.title %></h5>
+    <p class='text-secondary mb-0'><%= post.description %></p>
     </div>
   </div>
   <% end %>
