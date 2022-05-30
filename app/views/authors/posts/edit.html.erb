@@ -6,6 +6,13 @@
         <h4>Editing Post</h4>
         <%= render 'form', post: @post %>
       </div>
+      <div class="card-footer">
+        <% if @post.published? %>
+          <a href="#" class='btn btn-secondary btn-block'>Unpublish</a>
+        <% else %>
+            <a href="#" class='btn btn-dark btn-block'>Publish</a>
+        <% end %>
+      </div>
     </div>
   </div>
 <div class="col-md-9">
