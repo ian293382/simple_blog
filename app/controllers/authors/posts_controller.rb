@@ -26,9 +26,17 @@ module Authors
       @post = current_author.posts.build(post_params)
 
         if @post.save
+<<<<<<< HEAD
           redirect_to edit_post_path(@post)
         else
           render :new
+=======
+          format.html { redirect_to edit_post_path(@post), notice: "Post was successfully created." }
+          format.json { render :edit, status: :created, location: @post }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+>>>>>>> part3
         end
     end
 
@@ -36,7 +44,12 @@ module Authors
     def update
 
         if @post.update(post_params)
+<<<<<<< HEAD
             redirect_to edit_post_path(@post)
+=======
+          format.html { redirect_to edit_post_path(@post), notice: "Post was successfully updated." }
+          format.json { render :edit, status: :ok, location: @post }
+>>>>>>> part3
         else
           render :edit
         end
