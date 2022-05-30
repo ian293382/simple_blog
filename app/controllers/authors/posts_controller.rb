@@ -25,7 +25,6 @@ module Authors
     def create
       @post = current_author.posts.build(post_params)
 
-
         if @post.save
           redirect_to edit_post_path(@post)
         else
