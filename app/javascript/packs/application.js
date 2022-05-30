@@ -15,6 +15,10 @@ ActiveStorage.start()
 require("trix")
 require("@rails/actiontext")
 
+import '../stylesheet/application';
+
+dimport '../stylesheets/application'
+// for the unhide and hide the text
 
 document.addEventListener('turbolinks:load', () => {
   document.addEventListener('click', () => {
@@ -28,9 +32,7 @@ document.addEventListener('turbolinks:load', () => {
   document.addEventListener('click', () => {
     if (!event.target.matches('.cancel')) return;
 
-    event.preventDefault();
-
-    let element = event.target.closest('.form-content')
+    let element = event.target.closest('.paragraph-form')
 
     element.classList.add('d-none')
     element.previousElementSibling.classList.remove('d-none')
