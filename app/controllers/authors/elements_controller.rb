@@ -28,7 +28,7 @@ module Authors
      # DELETE /elements/1 or /elements/1.json
      def destroy
        @element.destroy
-       redirect_to elements_url, notice: "Element was successfully destroyed."
+       redirect_to edit_post_path(@element.post)
      end
 
     private
