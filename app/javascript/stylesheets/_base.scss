@@ -22,6 +22,9 @@
 
 
 .header-img{
-  max-width: 200px;
+  box-sizing: cover;
+  position: center;
+  max-width: 500px;
   height: auto;
+  padding: 0px;
 }
