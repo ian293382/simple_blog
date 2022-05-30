@@ -7,8 +7,15 @@
 <%= link_to  edit_post_path(post), class: 'text-decoreate-none' do %>
   <div class="card mb-3">
     <div class="card-body">
-      <h5 class='card-title mb-1 text-dark'><%= post.title %></h5>
-    <p class='text-secondary mb-0'><%= post.description %></p>
+      <div class="col-md-2">
+        <div class="container-fluid">
+             <%= image_tag(post.header_image, class:"header-img" ) %>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <h5 class='card-title mb-1 text-dark'><%= post.title %></h5>
+        <p class='text-secondary mb-0'><%= post.description %></p>
+      </div>
     </div>
   </div>
   <% end %>
