@@ -44,7 +44,7 @@ module Authors
 
       # Only allow a list of trusted parameters through.
       def element_params
-        params.require(:element).permit(:element_type, :content, :post_id, :position)
+        params.require(:element).permit(:element_type, :content, :image)
       end
   end
 end
