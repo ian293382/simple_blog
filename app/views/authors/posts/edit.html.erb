@@ -25,7 +25,7 @@
          <% @post.elements.each do |element| %>
            <% if element.persisted? %>
               <% if element.paragraph?  %>
-                <div class="mb-3 p-3 paragraph">
+                <div class="mb-4 p-3 paragraph">
                   <div class="paragraph-content">
                   <% if element.content.present? %>
                     <%= element.content %>
@@ -47,9 +47,13 @@
                 </div>
               </div>
                <% elsif element.image? %>
-               <div class="image">
+               <div class="mb-4 p-3 image">
                   <% if element.image.present? %>
+                    <div>
                      <%= image_tag(element.image) %>
+                    </div>
+                    <%= link_to 'Delete', post_element_path(@post, element), method: :delete, class: 'btn btn-danger mt-2 float-right',date: { confirm: " Are you sure?"} %>
+                   </div>
                   <% else %>
                     <%= form_with(model: [@post, element]) do |form| %>
                       <%= form.file_field :image %>
@@ -57,6 +61,7 @@
                             <%= form.submit "Save", class: 'btn btn-primary' %>
                             <a href="#" class='cancel btn btn-secondary'>Cancel</a>
                           </div>
+
                       <% end %>
                     <% end %>
                 </div>
