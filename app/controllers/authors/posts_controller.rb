@@ -26,6 +26,7 @@ module Authors
       @post = current_author.posts.build(post_params)
 
         if @post.save
+
           format.html { redirect_to edit_post_path(@post), notice: "Post was successfully created." }
           format.json { render :edit, status: :created, location: @post }
         else
@@ -39,6 +40,7 @@ module Authors
     def update
 
         if @post.update(post_params)
+            redirect_to edit_post_path(@post)
           format.html { redirect_to edit_post_path(@post), notice: "Post was successfully updated." }
           format.json { render :edit, status: :ok, location: @post }
 
@@ -52,10 +54,22 @@ module Authors
       @post.destroy
 
       respond_to do |format|
-        format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
+        format.html { redirect_to back, notice: "Post was successfully destroyed." }
         format.json { head :no_content }
       end
     end
+
+
+    def publish
+      post = Post.find(element.dataset[:post_id])
+      post.update(published: true, published_at: Time.now)
+    end
+
+    def unpublish
+      post = Post.find(element.dataset[:post_id])
+      post.update(published: false, published_at: nil)
+    end
+
 
     private
       # Use callbacks to share common setup or constraints between actions.
