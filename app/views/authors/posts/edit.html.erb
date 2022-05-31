@@ -28,7 +28,7 @@
     </div>
   </div>
 <div class="col-md-9">
-     <div class="md-3">
+     <div class="mb-3">
      <%= form_with(model: [@post, @element], html: { class: 'float-left mr-1'}) do |form| %>
        <%= form.hidden_field :element_type, value: 'paragraph' %>
          <%= form.submit "paragraph", class: 'btn btn-dark' %>
