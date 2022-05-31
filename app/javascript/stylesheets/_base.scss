@@ -19,7 +19,11 @@
     }
   }
 }
-
+//消除右半邊符號
+#elements {
+  list-style: none;
+  padding-left: 0;
+}
 
 .header-img{
   box-sizing: cover;
