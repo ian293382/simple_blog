@@ -31,13 +31,30 @@ document.addEventListener('turbolinks:load', () => {
   document.addEventListener('click', () => {
     if (!event.target.matches('.cancel')) return;
 
-    event.preventDefault();
+    event.preventDefault()
 
     let element = event.target.closest('.form-content')
 
     element.classList.add('d-none')
     element.previousElementSibling.classList.remove('d-none')
   })
+
+  let element = document.getElementById('elements')
+  Sortable.create(elements, { animation: 150})
 })
 
-import "controllers"
+import "controllers";
+
+import Sortable from 'sortablejs';
+
+// hello_controller.js
+import { Controller } from "stimulus"
+
+export default class extends Controller {
+  static targets = [ "name", "output" ]
+
+  greet() {
+    this.outputTarget.textContent =
+      `Hello, ${this.nameTarget.value}!`
+  }
+}
