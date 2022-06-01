@@ -41,10 +41,6 @@ module Authors
 
         if @post.update(post_params)
             redirect_to edit_post_path(@post)
-          format.html { redirect_to edit_post_path(@post), notice: "Post was successfully updated." }
-          format.json { render :edit, status: :ok, location: @post }
-        else
-          render :edit
         end
     end
 

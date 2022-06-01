@@ -1,3 +1,4 @@
+
 <div class="row">
   <div class="col-md-3">
      <%= link_to 'Back', posts_path, class: 'btn btn-secondary mb-3' %>
@@ -47,13 +48,13 @@
           <% else %>
             UnPublish
           <% end %>
-
        </div>
-       <div class="card-body pt-5">
-         <ul id='elements'>
-         <% @post.elements.each do |element| %>
-         <li>
-           <% if element.persisted? %>
+
+       <div class="card-body pt-5" data-controller="elements">
+         <ul id='elements' data-action="drop->elements#sort">
+         <% @post.elements.order(position: :asc).each do |element| %>
+         <% if element.persisted? %>
+         <li data-id="<%= element.id %>" class="element-item">
               <% if element.paragraph?  %>
                 <div class="mb-4 p-3 paragraph">
                   <div class="paragraph-content">
@@ -94,7 +95,7 @@
                   </div>
                 <% end %>
              <% end %>
-           </li>
+            </li>
          <% end %>
            </ul>
        </div>
